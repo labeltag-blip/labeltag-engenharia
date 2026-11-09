@@ -13,12 +13,17 @@
   --bg:#F6F4EF; --bg2:#FFFFFF; --bg3:#ECE8DF; --border:#DDD8CC;
   --text:#1E2A38; --muted:#5A6472; --decor:#9AA3AE;
   --ink:#1E2A38; --accent:#2F6FDE;
-  --critico:#9B1C1C; --risco:#C2410C; --atencao:#7A5200; --ok:#1F6B3A; --info:#2F6FDE;
+  --critico:#9B1C1C; --atencao:#7A5200; --ok:#1F6B3A; --info:#2F6FDE;
+  /* camadas do desenho */
+  --c-base:#8B5E3C; --c-base-ink:#FFF8F0;
+  --c-cola:#F2D27A; --c-cola-ink:#4A3A0A;
+  --c-mascara:#DCE8F7; --c-mascara-ink:#1E3A5F;
+  --c-tinta:#C9B6E4; --c-tinta-ink:#2E1F47;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--bg);color:var(--text);font:15px/1.45 "Public Sans",system-ui,sans-serif;min-height:100vh}
-.mono,td.num,.num{font-variant-numeric:tabular-nums}
+.num{font-variant-numeric:tabular-nums}
 a{color:var(--info)}
 header{position:relative;background:var(--ink);color:#F6F4EF;padding:14px 16px;display:flex;justify-content:center;align-items:center;min-height:80px}
 header .marca{display:flex;align-items:center;justify-content:center;gap:16px}
@@ -38,53 +43,81 @@ header button.btn-h{background:transparent;color:#fff;border:1px solid rgba(255,
 button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);padding:7px 12px}
 button.prim{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
 button:disabled{opacity:.5;cursor:default}
-main{max-width:1100px;margin:0 auto;padding:16px}
+main{max-width:900px;margin:0 auto;padding:16px}
 .oculto{display:none!important}
-.abas{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.abas button{flex:1;font-weight:700;background:var(--bg2)}
+.abas{display:flex;gap:6px;margin-bottom:14px}
+.abas button{flex:1;font-weight:700;background:var(--bg2);padding:10px 6px}
 .abas button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#F6F4EF}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px}
-.card h2{margin:0 0 10px;font-size:17px;color:var(--ink)}
-.card h3{margin:16px 0 8px;font-size:14px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px}
+.card h2{margin:0 0 12px;font-size:17px}
 .sub{color:var(--muted);font-size:13px}
-label{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px}
-input,select{font:inherit;width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
-input[type=checkbox]{width:auto;margin:0 6px 0 0;vertical-align:middle}
-.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0 12px}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px;font-weight:600}
+input,select{font:inherit;width:100%;padding:9px 10px;border-radius:8px;border:1px solid var(--border);background:#FDFCFA;color:var(--text)}
+input[type=checkbox]{width:auto;margin:0;accent-color:var(--accent)}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0 12px}
 .rolagem{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{border-collapse:collapse;width:100%;font-size:14px}
-th,td{padding:8px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
-th{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap}
+th,td{padding:8px;border-bottom:1px solid var(--border);text-align:left;vertical-align:middle}
+th{font-size:12px;color:var(--muted);font-weight:600}
 td.num,th.num{text-align:right;white-space:nowrap}
 .tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;border:1px solid var(--border);color:var(--muted);white-space:nowrap}
 .tag.ok{color:var(--ok);border-color:var(--ok)}
 .tag.info{color:var(--info);border-color:var(--info)}
-.tag.atencao{color:var(--atencao);border-color:var(--atencao)}
-.tag.critico{color:var(--critico);border-color:var(--critico)}
 .msg{padding:10px 12px;border-radius:8px;margin-top:10px;font-size:14px;border:1px solid var(--border)}
-.msg.erro{border-color:var(--critico);color:var(--critico)}
-.msg.ok{border-color:var(--ok);color:var(--ok)}
-.msg.aviso{border-color:var(--atencao);color:var(--atencao)}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.opcoes{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px}
-.opcoes label{margin:0;color:var(--text);display:flex;align-items:center}
-.seg{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.seg button{border:0;border-radius:0;flex:1;padding:8px 6px}
+.msg.erro{border-color:var(--critico);color:var(--critico);background:#FDE7E7}
+.msg.ok{border-color:var(--ok);color:var(--ok);background:#E3F4E8}
+.msg.aviso{border-color:var(--atencao);color:var(--atencao);background:#FFF4D6}
+.linha-sel{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+.linha-sel>div{flex:1 1 200px}
+.meta{margin-top:6px}
+
+/* controles do produto */
+.controles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:#FDFCFA}
+.seg button{border:0;border-radius:0;padding:8px 14px;background:transparent}
 .seg button[aria-pressed="true"]{background:var(--ink);color:#F6F4EF;font-weight:700}
-.total{font-size:20px;font-weight:700;color:var(--ink)}
-input.edit{width:90px;text-align:right;padding:4px 6px;font-variant-numeric:tabular-nums}
+.pill{border-radius:999px;padding:8px 14px;background:#FDFCFA}
+.pill[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.pill[aria-pressed="true"]::before{content:"✓ "}
+.pill.travado{opacity:.85;cursor:default}
+
+/* desenho do sanduíche */
+.pilha-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;margin:6px 0 4px}
+.laser{font-size:13px;font-weight:700;color:var(--critico);letter-spacing:.02em}
+.pilha{width:100%;max-width:520px;display:flex;flex-direction:column;border-radius:10px;overflow:hidden;box-shadow:0 4px 14px rgba(30,42,56,.12)}
+.camada{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;animation:entra .25s ease}
+.camada .nome{font-weight:700;font-size:14px;line-height:1.2}
+.camada .mat{font-size:12px;opacity:.85}
+.camada .lado{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.75;white-space:nowrap}
+.camada.base{background:var(--c-base);color:var(--c-base-ink);min-height:64px}
+.camada.cola{background:var(--c-cola);color:var(--c-cola-ink);min-height:42px}
+.camada.mascara{background:repeating-linear-gradient(135deg,var(--c-mascara),var(--c-mascara) 10px,#EEF4FC 10px,#EEF4FC 20px);color:var(--c-mascara-ink);min-height:40px}
+.camada.tinta,.camada.outro{background:var(--c-tinta);color:var(--c-tinta-ink);min-height:36px}
+.camada + .camada{border-top:1px solid rgba(0,0,0,.08)}
+@keyframes entra{from{transform:scaleY(.85)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){.camada{animation:none}}
+.nao-entram{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+
+/* roteiro */
+.fluxo{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.etapa{border:1px solid var(--border);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:600;background:#FDFCFA}
+.etapa.ativa{background:var(--ink);color:#F6F4EF;border-color:var(--ink)}
+.etapa.inativa{color:var(--decor);border-style:dashed;font-weight:400}
+.seta{color:var(--decor)}
+
+.total{font-size:22px;font-weight:700}
+input.edit{width:96px;text-align:right;padding:5px 7px;font-variant-numeric:tabular-nums}
 tr.fora td{color:var(--muted);text-decoration:line-through}
-@media (max-width:600px){ .esconde{display:none} }
+.acoes{margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 @media print{
-  :root{--bg:#fff;--bg2:#fff;--border:#ccc}
   header .dir,.abas,button,.noprint{display:none!important}
-  .card{break-inside:avoid;border-color:#ccc}
+  .card{break-inside:avoid}
 }
 </style>
 </head>
 <body>
 <header>
-  <span id="versao" title="Data e hora em que este arquivo foi gerado">Versão 09/11/2026 19:48</span>
+  <span id="versao" title="Data e hora em que este arquivo foi gerado">Versão 09/11/2026 20:15</span>
   <div class="marca"><svg class="logo" viewBox="0 0 285.46 69" role="img" aria-label="Label Tag"><title>Label Tag</title><path fill="currentColor" d="M 235.45 64.27 L 238.35 64.27 L 236.9 60.42 Z M 239.27 66.71 L 238.61 64.94 L 235.19 64.94 L 234.52 66.71 L 233.76 66.71 L 236.53 59.52 L 237.27 59.52 L 240.04 66.71 Z M 227.34 66.83 C 226.25 66.83 225.35 66.48 224.64 65.75 C 223.92 65.04 223.57 64.16 223.57 63.11 C 223.57 62.07 223.92 61.19 224.64 60.47 C 225.35 59.75 226.25 59.39 227.34 59.39 C 228 59.39 228.61 59.55 229.17 59.87 C 229.72 60.19 230.15 60.62 230.45 61.16 L 229.82 61.53 C 229.59 61.09 229.25 60.74 228.81 60.48 C 228.36 60.22 227.88 60.09 227.34 60.09 C 226.44 60.09 225.71 60.38 225.14 60.96 C 224.57 61.55 224.29 62.26 224.29 63.11 C 224.29 63.96 224.57 64.68 225.14 65.26 C 225.71 65.84 226.44 66.14 227.34 66.14 C 227.88 66.14 228.36 66 228.81 65.75 C 229.25 65.48 229.59 65.13 229.82 64.7 L 230.45 65.05 C 230.16 65.6 229.73 66.03 229.17 66.35 C 228.61 66.67 228 66.83 227.34 66.83 Z M 215.48 60.2 L 215.48 63.15 L 217.64 63.15 C 218.03 63.15 218.37 63.01 218.65 62.72 C 218.93 62.43 219.07 62.08 219.07 61.68 C 219.07 61.26 218.93 60.91 218.65 60.62 C 218.37 60.34 218.03 60.2 217.64 60.2 Z M 219.18 66.71 L 217.5 63.83 L 215.48 63.83 L 215.48 66.71 L 214.76 66.71 L 214.76 59.52 L 217.64 59.52 C 218.23 59.52 218.74 59.73 219.16 60.15 C 219.58 60.57 219.79 61.08 219.79 61.68 C 219.79 62.16 219.65 62.59 219.36 62.97 C 219.07 63.36 218.7 63.61 218.24 63.74 L 220 66.71 Z M 206.3 64.27 L 209.2 64.27 L 207.75 60.42 Z M 210.12 66.71 L 209.45 64.94 L 206.04 64.94 L 205.37 66.71 L 204.61 66.71 L 207.38 59.52 L 208.12 59.52 L 210.88 66.71 Z M 200.73 59.52 L 200.73 66.71 L 200.02 66.71 L 200.02 60.61 L 197.5 64.82 L 197.39 64.82 L 194.88 60.61 L 194.88 66.71 L 194.16 66.71 L 194.16 59.52 L 195.04 59.52 L 197.45 63.54 L 199.85 59.52 Z M 183.12 64.27 L 186.03 64.27 L 184.57 60.42 Z M 186.95 66.71 L 186.29 64.94 L 182.87 64.94 L 182.2 66.71 L 181.44 66.71 L 184.21 59.52 L 184.95 59.52 L 187.71 66.71 Z M 177.13 66.14 C 176.64 66.6 176 66.83 175.2 66.83 C 174.41 66.83 173.76 66.6 173.27 66.14 C 172.77 65.67 172.53 65.05 172.53 64.27 L 172.53 59.52 L 173.25 59.52 L 173.25 64.27 C 173.25 64.84 173.42 65.3 173.76 65.63 C 174.11 65.97 174.59 66.14 175.2 66.14 C 175.82 66.14 176.3 65.97 176.64 65.63 C 176.98 65.3 177.15 64.84 177.15 64.27 L 177.15 59.52 L 177.88 59.52 L 177.88 64.27 C 177.88 65.05 177.63 65.67 177.13 66.14 Z M 166.02 66.83 C 165.36 66.83 164.8 66.68 164.33 66.37 C 163.86 66.05 163.54 65.62 163.35 65.07 L 163.96 64.71 C 164.09 65.16 164.34 65.51 164.68 65.76 C 165.04 66.01 165.48 66.14 166.03 66.14 C 166.57 66.14 166.98 66.02 167.28 65.78 C 167.58 65.54 167.73 65.23 167.73 64.84 C 167.73 64.46 167.59 64.18 167.32 63.99 C 167.04 63.79 166.59 63.6 165.96 63.39 C 165.21 63.14 164.72 62.95 164.48 62.79 C 163.93 62.46 163.66 61.99 163.66 61.37 C 163.66 60.75 163.87 60.27 164.29 59.92 C 164.72 59.57 165.24 59.39 165.87 59.39 C 166.43 59.39 166.91 59.54 167.33 59.83 C 167.74 60.12 168.04 60.49 168.24 60.95 L 167.64 61.29 C 167.3 60.49 166.71 60.09 165.87 60.09 C 165.42 60.09 165.06 60.2 164.79 60.42 C 164.51 60.64 164.38 60.95 164.38 61.34 C 164.38 61.69 164.5 61.96 164.75 62.14 C 164.99 62.32 165.4 62.5 165.97 62.68 C 166.23 62.77 166.42 62.83 166.53 62.87 C 166.64 62.91 166.81 62.97 167.02 63.05 C 167.24 63.14 167.4 63.22 167.5 63.28 C 167.61 63.35 167.73 63.44 167.88 63.55 C 168.02 63.66 168.13 63.78 168.2 63.89 C 168.26 64 168.32 64.14 168.37 64.3 C 168.42 64.46 168.45 64.63 168.45 64.82 C 168.45 65.43 168.22 65.92 167.78 66.29 C 167.33 66.65 166.75 66.83 166.02 66.83 Z M 154.54 66.86 C 156.1 66.86 157.21 66.03 157.21 64.64 C 157.21 63.12 155.99 62.74 154.9 62.41 C 153.78 62.07 153.6 61.85 153.6 61.52 C 153.6 61.23 153.86 60.97 154.38 60.97 C 155.03 60.97 155.37 61.29 155.62 61.81 L 157.01 61 C 156.48 59.94 155.55 59.37 154.38 59.37 C 153.13 59.37 151.96 60.17 151.96 61.56 C 151.96 62.94 153.01 63.45 154.07 63.75 C 155.16 64.05 155.57 64.22 155.57 64.66 C 155.57 64.94 155.37 65.25 154.59 65.25 C 153.78 65.25 153.34 64.85 153.08 64.25 L 151.66 65.07 C 152.06 66.14 153.03 66.86 154.54 66.86 Z M 144.66 65.25 C 143.49 65.25 142.56 64.4 142.56 63.11 C 142.56 61.83 143.49 60.97 144.66 60.97 C 145.83 60.97 146.76 61.83 146.76 63.11 C 146.76 64.4 145.83 65.25 144.66 65.25 Z M 144.66 66.86 C 146.73 66.86 148.4 65.23 148.4 63.11 C 148.4 61 146.73 59.37 144.66 59.37 C 142.59 59.37 140.92 61 140.92 63.11 C 140.92 65.23 142.59 66.86 144.66 66.86 Z M 137.04 59.52 L 135.4 59.52 L 133.45 62.71 L 131.49 59.52 L 129.85 59.52 L 129.85 66.71 L 131.49 66.71 L 131.49 62.53 L 133.35 65.58 L 133.54 65.58 L 135.4 62.53 L 135.4 66.71 L 137.04 66.71 Z M 121.94 64.04 L 122.79 61.39 L 123.63 64.04 Z M 124.48 66.71 L 126.28 66.71 L 123.83 59.52 L 121.74 59.52 L 119.29 66.71 L 121.09 66.71 L 121.45 65.58 L 124.12 65.58 Z M 114.08 59.52 L 114.08 63.42 L 111.3 59.52 L 110.07 59.52 L 110.07 66.71 L 111.71 66.71 L 111.71 62.8 L 114.49 66.71 L 115.72 66.71 L 115.72 59.52 Z M 104.24 66.71 L 105.89 66.71 L 105.89 59.52 L 104.24 59.52 Z M 97.85 66.86 C 99.41 66.86 100.52 66.03 100.52 64.64 C 100.52 63.12 99.3 62.74 98.21 62.41 C 97.09 62.07 96.91 61.85 96.91 61.52 C 96.91 61.23 97.17 60.97 97.68 60.97 C 98.34 60.97 98.68 61.29 98.93 61.81 L 100.32 61 C 99.79 59.94 98.87 59.37 97.68 59.37 C 96.44 59.37 95.27 60.17 95.27 61.56 C 95.27 62.94 96.32 63.45 97.39 63.75 C 98.46 64.05 98.88 64.22 98.88 64.66 C 98.88 64.94 98.68 65.25 97.9 65.25 C 97.09 65.25 96.64 64.85 96.39 64.25 L 94.97 65.07 C 95.37 66.14 96.34 66.86 97.85 66.86 Z M 89.09 66.86 C 90.65 66.86 91.76 66.03 91.76 64.64 C 91.76 63.12 90.54 62.74 89.45 62.41 C 88.33 62.07 88.15 61.85 88.15 61.52 C 88.15 61.23 88.41 60.97 88.93 60.97 C 89.58 60.97 89.92 61.29 90.17 61.81 L 91.56 61 C 91.03 59.94 90.11 59.37 88.93 59.37 C 87.68 59.37 86.51 60.17 86.51 61.56 C 86.51 62.94 87.56 63.45 88.62 63.75 C 89.71 64.05 90.12 64.22 90.12 64.66 C 90.12 64.94 89.92 65.25 89.14 65.25 C 88.33 65.25 87.89 64.85 87.63 64.25 L 86.21 65.07 C 86.61 66.14 87.58 66.86 89.09 66.86 Z M 78.82 64.04 L 79.66 61.39 L 80.51 64.04 Z M 81.36 66.71 L 83.16 66.71 L 80.71 59.52 L 78.61 59.52 L 76.17 66.71 L 77.96 66.71 L 78.33 65.58 L 81 65.58 Z M 81.36 66.71 "/><path fill="currentColor" d="M 14.1 39.7 L 14.1 0.98 L 2.75 0.98 L 2.75 50.62 L 31.81 50.62 L 31.81 39.7 Z M 59.77 15.17 L 59.77 18.5 C 57.44 15.81 53.95 14.18 49.2 14.18 C 39.91 14.18 32.24 22.34 32.24 32.89 C 32.24 43.47 39.91 51.63 49.2 51.63 C 53.95 51.63 57.44 50 59.77 47.29 L 59.77 50.62 L 70.41 50.62 L 70.41 15.17 Z M 51.34 41.56 C 46.43 41.56 42.88 38.23 42.88 32.89 C 42.88 27.58 46.43 24.25 51.34 24.25 C 56.21 24.25 59.77 27.58 59.77 32.89 C 59.77 38.23 56.21 41.56 51.34 41.56 Z M 97.38 14.18 C 92.63 14.18 89.13 15.81 86.8 18.5 L 86.8 0.98 L 76.17 0.98 L 76.17 50.62 L 86.8 50.62 L 86.8 47.29 C 89.13 50 92.63 51.63 97.38 51.63 C 106.67 51.63 114.33 43.47 114.33 32.89 C 114.33 22.34 106.67 14.18 97.38 14.18 Z M 95.23 41.56 C 90.36 41.56 86.8 38.23 86.8 32.89 C 86.8 27.58 90.36 24.25 95.23 24.25 C 100.14 24.25 103.7 27.58 103.7 32.89 C 103.7 38.23 100.14 41.56 95.23 41.56 Z M 127.82 37.15 L 152.98 37.15 C 153.26 35.81 153.41 34.39 153.41 32.89 C 153.41 22.18 145.75 14.18 135.39 14.18 C 124.2 14.18 116.54 22.34 116.54 32.89 C 116.54 43.47 124.05 51.63 136.18 51.63 C 142.9 51.63 148.17 49.15 151.63 44.32 C 148.78 42.69 145.93 41.05 143.11 39.42 C 141.7 40.99 139.22 42.11 136.31 42.11 C 132.41 42.11 129.16 40.85 127.82 37.15 Z M 127.6 29.21 C 128.58 25.61 131.28 23.61 135.33 23.61 C 138.52 23.61 141.7 25.1 142.84 29.21 Z M 157.39 50.62 L 168.03 50.62 L 168.03 0.98 L 157.39 0.98 Z M 207.48 0.98 L 170.61 0.98 L 170.61 11.91 L 183.36 11.91 L 183.36 50.62 L 194.7 50.62 L 194.7 11.91 L 207.48 11.91 Z M 229.4 15.17 L 229.4 18.5 C 227.07 15.81 223.57 14.18 218.82 14.18 C 209.54 14.18 201.87 22.34 201.87 32.89 C 201.87 43.47 209.54 51.63 218.82 51.63 C 223.57 51.63 227.07 50 229.4 47.29 L 229.4 50.62 L 240.04 50.62 L 240.04 15.17 Z M 220.97 41.56 C 216.06 41.56 212.51 38.23 212.51 32.89 C 212.51 27.58 216.06 24.25 220.97 24.25 C 225.84 24.25 229.4 27.58 229.4 32.89 C 229.4 38.23 225.84 41.56 220.97 41.56 Z M 271.82 15.17 L 271.82 18.78 C 269.49 15.88 266.09 14.18 261.46 14.18 C 251.41 14.18 244.02 22.41 244.02 32.18 C 244.02 41.98 251.41 50.21 261.46 50.21 C 266.09 50.21 269.49 48.5 271.82 45.59 L 271.82 50.07 C 271.82 55.1 268.75 57.65 263.82 57.65 C 259.13 57.65 257.08 55.68 255.73 53.2 C 252.69 54.94 249.66 56.69 246.66 58.44 C 249.91 64.25 256.07 67.04 263.45 67.04 C 272.89 67.04 282.18 62 282.18 50.07 L 282.18 15.17 Z M 263.24 40.41 C 258.21 40.41 254.66 37.08 254.66 32.18 C 254.66 27.31 258.21 23.98 263.24 23.98 C 268.27 23.98 271.82 27.31 271.82 32.18 C 271.82 37.08 268.27 40.41 263.24 40.41 "/></svg><div><h1>Engenharia de Produto</h1><small>receitas · consumo por m² · roteiro</small></div></div>
   <div class="dir">
     <span class="quem" id="quem"></span>
@@ -93,7 +126,6 @@ tr.fora td{color:var(--muted);text-decoration:line-through}
 </header>
 
 <main>
-  <!-- LOGIN -->
   <section id="telaLogin" class="oculto">
     <div class="card" style="max-width:420px;margin:40px auto">
       <h2>Entrar</h2>
@@ -102,105 +134,121 @@ tr.fora td{color:var(--muted);text-decoration:line-through}
       <input id="loginEmail" type="email" autocomplete="username" placeholder="nome@labeltag.com.br">
       <label for="loginSenha">Senha</label>
       <input id="loginSenha" type="password" autocomplete="current-password">
-      <div style="margin-top:12px"><button id="btnSenha" class="prim" type="button">Entrar</button></div>
-      <p class="sub" style="margin:14px 0 0">Sem senha? <a href="#" id="btnLink">Receber um link de acesso por e-mail</a> e abra-o neste aparelho.</p>
+      <div class="acoes"><button id="btnSenha" class="prim" type="button">Entrar</button></div>
+      <p class="sub" style="margin:14px 0 0">Sem senha? <a href="#" id="btnLink">Receber um link de acesso por e-mail</a>.</p>
       <div id="loginMsg"></div>
     </div>
   </section>
 
-  <section id="telaSemAcesso" class="oculto"><div class="card msg aviso" id="semAcessoMsg"></div></section>
+  <section id="telaSemAcesso" class="oculto"><div class="msg aviso" id="semAcessoMsg"></div></section>
 
-  <!-- APP -->
   <section id="telaApp" class="oculto">
-    <div class="card noprint" style="padding:10px 14px">
-      <label for="selReceita" style="margin-top:0">Técnica</label>
-      <select id="selReceita"></select>
+    <div class="abas noprint" role="tablist">
+      <button type="button" role="tab" data-aba="tecnica" aria-selected="true">Técnica</button>
+      <button type="button" role="tab" data-aba="consumo" aria-selected="false">Calcular consumo</button>
+      <button type="button" role="tab" data-aba="config" aria-selected="false" class="admin oculto">Configurar</button>
     </div>
 
-    <div class="abas" role="tablist">
-      <button type="button" role="tab" data-aba="receita" aria-selected="true">Receita</button>
-      <button type="button" role="tab" data-aba="simular" aria-selected="false">Simular produto</button>
-    </div>
-
-    <!-- ABA RECEITA -->
-    <div id="abaReceita">
+    <!-- ===== TÉCNICA ===== -->
+    <div id="abaTecnica">
       <div class="card">
-        <h2 id="recTitulo">Receita</h2>
+        <div class="linha-sel">
+          <div><label for="selReceita" style="margin-top:0">Técnica</label><select id="selReceita"></select></div>
+          <div><label for="selGrupo" style="margin-top:0">Família do material</label><select id="selGrupo"></select></div>
+        </div>
+        <div class="controles noprint">
+          <div class="seg" role="group" aria-label="Lado do corte">
+            <button type="button" data-corte="verso" aria-pressed="true">Corte pelo verso</button>
+            <button type="button" data-corte="frente" aria-pressed="false">Corte por cima</button>
+          </div>
+          <button type="button" class="pill" data-attr="impressao" aria-pressed="false">Impressão</button>
+          <button type="button" class="pill" data-attr="textura" aria-pressed="false">Textura</button>
+          <button type="button" class="pill" data-attr="silk" aria-pressed="false">Silk</button>
+        </div>
+        <div id="avisoTec"></div>
+      </div>
+
+      <div class="card">
+        <div class="pilha-wrap">
+          <div class="laser" id="laserCima"></div>
+          <div class="pilha" id="pilha" aria-label="Camadas do produto"></div>
+          <div class="laser" id="laserBaixo"></div>
+        </div>
+        <div class="nao-entram" id="naoEntram"></div>
+      </div>
+
+      <div class="card">
+        <h2>Roteiro</h2>
+        <div class="fluxo" id="fluxo"></div>
+      </div>
+      <p class="sub" id="metaReceita" style="text-align:center"></p>
+    </div>
+
+    <!-- ===== CALCULAR CONSUMO ===== -->
+    <div id="abaConsumo" class="oculto">
+      <div class="card">
+        <p class="sub" style="margin:0" id="resumoProduto"></p>
         <div class="grade">
-          <div><label>Perda de processo (manuseio)</label>
-            <div id="recPerda" class="mono"></div></div>
-          <div><label>Versão da receita</label><div id="recVersao" class="mono"></div></div>
-          <div><label>Última alteração</label><div id="recAtual" class="mono"></div></div>
-        </div>
-        <p class="sub" id="recObs"></p>
-        <div id="recEditMsg"></div>
-      </div>
-
-      <div class="card">
-        <h2>Camadas de material</h2>
-        <p class="sub" style="margin-top:0">Consumo por m² de <b>peça boa</b>. O geométrico já inclui largura do rolo e perda de laminação; o final soma a perda de processo. O aproveitamento entre peças entra no produto.</p>
-        <div class="rolagem"><table>
-          <thead><tr><th>#</th><th>Camada</th><th>Lado</th><th>Material</th><th>Quando entra</th><th class="num">Geom. m²</th><th class="num">Final m²</th></tr></thead>
-          <tbody id="tbCamadas"></tbody>
-        </table></div>
-        <div id="opcoesBox"></div>
-        <div class="noprint admin oculto" style="margin-top:10px"><button id="btnSalvarCamadas" type="button" class="prim">Salvar alterações</button> <span class="sub">Só admin. Altera consumo geométrico e perda.</span></div>
-        <div id="camMsg"></div>
-      </div>
-
-      <div class="card">
-        <h2>Grupos de material permitidos</h2>
-        <div class="rolagem"><table>
-          <thead><tr><th>Grupo</th><th>Meio corte pelo verso<br><span class="sub">(letra solta)</span></th><th>Corte por cima<br><span class="sub">(grelha)</span></th><th>Textura de fábrica</th></tr></thead>
-          <tbody id="tbGrupos"></tbody>
-        </table></div>
-        <div class="noprint admin oculto" style="margin-top:10px"><button id="btnSalvarGrupos" type="button" class="prim">Salvar grupos</button></div>
-        <div id="grpMsg"></div>
-      </div>
-
-      <div class="card">
-        <h2>Roteiro de setores</h2>
-        <ol id="lstEtapas" style="margin:0;padding-left:20px"></ol>
-      </div>
-    </div>
-
-    <!-- ABA SIMULAR -->
-    <div id="abaSimular" class="oculto">
-      <div class="card">
-        <h2>Simular produto</h2>
-        <p class="sub" style="margin-top:0">Testa as regras: escolha o material e os atributos do produto e veja quais camadas entram e quanto se consome. Não grava nada.</p>
-        <div class="grade">
-          <div><label for="sGrupo">Família do material</label><select id="sGrupo"></select></div>
-          <div><label>Corte</label>
-            <div class="seg" id="sCorte"><button type="button" data-v="verso" aria-pressed="true">Pelo verso</button><button type="button" data-v="frente" aria-pressed="false">Por cima</button></div></div>
-        </div>
-        <div class="opcoes" style="margin-top:12px">
-          <label><input type="checkbox" id="sImp"> Tem impressão</label>
-          <label><input type="checkbox" id="sTex"> Superfície com textura</label>
-          <label><input type="checkbox" id="sSilk"> Tem silk</label>
-        </div>
-        <div class="grade" style="margin-top:4px">
           <div><label for="sQtd">Quantidade de peças</label><input id="sQtd" inputmode="numeric" value="1000"></div>
           <div><label for="sLarg">Largura da peça (mm)</label><input id="sLarg" inputmode="decimal" value="50"></div>
           <div><label for="sAlt">Altura da peça (mm)</label><input id="sAlt" inputmode="decimal" value="30"></div>
           <div><label for="sAprov">Aproveitamento (%)</label><input id="sAprov" inputmode="decimal" value="80"></div>
         </div>
-        <div id="simMsg"></div>
+        <div id="consMsg"></div>
       </div>
       <div class="card">
-        <h2>Resultado</h2>
         <div class="grade">
-          <div><label>Área das peças</label><div class="total" id="rArea">–</div></div>
-          <div><label>Área consumida (÷ aproveitamento)</label><div class="total" id="rAreaBruta">–</div></div>
+          <div><label>Área das peças</label><div class="total num" id="rArea">–</div></div>
+          <div><label>Área consumida</label><div class="total num" id="rAreaBruta">–</div></div>
         </div>
-        <h3>Camadas</h3>
-        <div class="rolagem"><table>
-          <thead><tr><th>Usa</th><th>Camada</th><th>Material para baixa</th><th class="num">m²/m²</th><th class="num">Consumo m²</th></tr></thead>
-          <tbody id="tbSim"></tbody>
+        <div class="rolagem" style="margin-top:12px"><table>
+          <thead><tr><th>Usa</th><th>Camada</th><th>Material (baixa)</th><th class="num">Consumo</th></tr></thead>
+          <tbody id="tbCons"></tbody>
         </table></div>
-        <p class="sub" id="simNota"></p>
-        <h3>Roteiro</h3>
-        <div class="chips" id="simEtapas"></div>
+      </div>
+    </div>
+
+    <!-- ===== CONFIGURAR (admin) ===== -->
+    <div id="abaConfig" class="oculto">
+      <div class="card">
+        <h2 id="cfgTitulo">Receita</h2>
+        <div class="grade">
+          <div><label for="cfgPerda">Perda de processo (%)</label><input id="cfgPerda" inputmode="decimal"></div>
+          <div><label>Versão</label><div class="num" id="cfgVersao" style="padding-top:8px"></div></div>
+          <div><label>Última alteração</label><div class="num" id="cfgAlterada" style="padding-top:8px"></div></div>
+        </div>
+        <label for="cfgObs">Observação</label><input id="cfgObs">
+        <h2 style="margin-top:18px">Consumo por camada</h2>
+        <p class="sub" style="margin-top:-6px">m² por m² de peça boa, só geometria (largura do rolo e laminação). A perda de processo é somada no final.</p>
+        <div class="rolagem"><table>
+          <thead><tr><th>Camada</th><th>Quando entra</th><th class="num">Geométrico</th><th class="num">Final</th></tr></thead>
+          <tbody id="tbCfgCamadas"></tbody>
+        </table></div>
+        <div class="acoes"><button id="btnSalvarReceita" type="button" class="prim">Salvar receita</button></div>
+        <div id="cfgMsg"></div>
+      </div>
+
+      <div class="card" id="cardOpcoes"></div>
+
+      <div class="card">
+        <h2>Famílias de material</h2>
+        <div class="rolagem"><table>
+          <thead><tr><th>Família</th><th>Corte pelo verso</th><th>Corte por cima</th><th>Textura de fábrica</th></tr></thead>
+          <tbody id="tbCfgGrupos"></tbody>
+        </table></div>
+        <div class="acoes"><button id="btnSalvarGrupos" type="button" class="prim">Salvar famílias</button></div>
+        <div id="grpMsg"></div>
+      </div>
+
+      <div class="card">
+        <h2>Nova técnica</h2>
+        <div class="grade">
+          <div><label for="novaNome">Nome</label><input id="novaNome" placeholder="Ex.: Refletivo"></div>
+          <div><label for="novaPerda">Perda de processo (%)</label><input id="novaPerda" inputmode="decimal" value="15"></div>
+        </div>
+        <div class="acoes"><button id="btnNova" type="button" class="prim">+ Criar técnica</button>
+          <span class="sub">As camadas são cadastradas na próxima etapa.</span></div>
+        <div id="novaMsg"></div>
       </div>
     </div>
   </section>
@@ -208,17 +256,18 @@ tr.fora td{color:var(--muted);text-decoration:line-through}
 
 <script>
 "use strict";
-// ===== CONFIGURAÇÃO (chave pública "publishable"; acesso real controlado por RLS) =====
+// ===== CONFIGURAÇÃO (chave pública "publishable"; acesso controlado por RLS) =====
 const SUPABASE_URL = "https://qbdzzngcwxljomqiboqh.supabase.co";
 const SUPABASE_KEY = "sb_publishable_JIFQyxCn9MYZwc_MFJfUNA_F3saGuEp";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { db: { schema: "engenharia" } });
 const est = () => sb.schema("estoque");
-const LS = "en_";   // prefixo localStorage deste painel
+const LS = "en_";
 
 // ===== UTILITÁRIOS =====
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt = (n, d = 4) => n == null || isNaN(n) ? "–" : Number(n).toLocaleString("pt-BR", { minimumFractionDigits: Math.min(d, 2), maximumFractionDigits: d });
+const fmtData = s => s ? new Date(s).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" }) : "–";
 function num(s) {
   s = String(s ?? "").trim().replace(/\s/g, "");
   if (!s) return NaN;
@@ -233,19 +282,21 @@ function erroTxt(e) {
   if (/JWT|token/i.test(t)) return "Sua sessão expirou. Saia e entre de novo.";
   if (/row-level security|permission denied/i.test(t)) return "Você não tem permissão para isso.";
   if (/Failed to fetch|NetworkError/i.test(t)) return "Sem conexão com o servidor.";
-  if (/PGRST106|invalid schema/i.test(t)) return "O schema <b>engenharia</b> não está liberado. No Supabase: Settings → API → Exposed schemas → acrescentar <b>engenharia</b>.";
+  if (/duplicate key/i.test(t)) return "Já existe uma técnica com esse nome.";
+  if (/PGRST106|invalid schema/i.test(t)) return "O schema <b>engenharia</b> não está liberado no Supabase (Data API → Exposed schemas).";
   return esc(t);
 }
-const LADO = { frente: "Frente", verso: "Verso" };
-const COND = { sempre: "sempre", impressao: "com impressão", silk: "com silk" };
+const LADO = { frente: "frente", verso: "verso" };
 
 // ===== ESTADO =====
 let sessao = null, perfil = null, iniciado = false;
-let receitas = [], camadas = [], regras = [], opcoes = [], grupos = [], etapas = [], vw = [];
+let receitas = [], camadas = [], regras = [], opcoes = [], grupos = [], etapas = [];
 let gruposCusto = {}, nomesMat = {};
-let recAtual = null;
+let rec = null;
+const prod = { grupo: null, corte: "verso", impressao: false, textura: false, silk: false };
+const desmarcadas = new Set();
 
-// ===== LOGIN (mesmo Supabase e perfis do estoque) =====
+// ===== LOGIN =====
 $("btnSenha").onclick = async () => {
   const email = $("loginEmail").value.trim(), password = $("loginSenha").value;
   if (!email || !password) return msg("loginMsg", "erro", "Informe e-mail e senha.");
@@ -266,12 +317,10 @@ $("btnLink").onclick = async ev => {
   } catch (e) { msg("loginMsg", "erro", erroTxt(e)); }
 };
 $("btnSair").onclick = async () => { await sb.auth.signOut(); location.href = location.pathname; };
-
 sb.auth.onAuthStateChange((ev, s) => { sessao = s; if (ev !== "TOKEN_REFRESHED") setTimeout(iniciar, 0); });
 sb.auth.getSession().then(({ data }) => { sessao = data.session; iniciar(); });
 
 function mostra(id) { ["telaLogin", "telaSemAcesso", "telaApp"].forEach(t => $(t).classList.toggle("oculto", t !== id)); }
-
 async function iniciar() {
   if (!sessao) { iniciado = false; perfil = null; $("btnSair").classList.add("oculto"); $("quem").textContent = ""; mostra("telaLogin"); return; }
   if (iniciado) return;
@@ -292,7 +341,7 @@ async function iniciar() {
 }
 
 // ===== CARGA =====
-async function carregar() {
+async function carregar(manterId) {
   try {
     const r = await Promise.all([
       sb.from("receita").select("*").eq("ativo", true).order("nome"),
@@ -301,220 +350,283 @@ async function carregar() {
       sb.from("receita_camada_opcao").select("*"),
       sb.from("receita_grupo_permitido").select("*"),
       sb.from("receita_etapa").select("*").order("ordem"),
-      sb.from("vw_receita_consumo").select("*"),
       est().from("grupo_custo").select("id,nome,tecnica,ativo")
     ]);
     const erro = r.find(x => x.error); if (erro) throw erro.error;
-    [receitas, camadas, regras, opcoes, grupos, etapas, vw] = r.slice(0, 7).map(x => x.data || []);
-    gruposCusto = Object.fromEntries((r[7].data || []).map(g => [g.id, g]));
+    [receitas, camadas, regras, opcoes, grupos, etapas] = r.slice(0, 6).map(x => x.data || []);
+    gruposCusto = Object.fromEntries((r[6].data || []).map(g => [g.id, g]));
     const codigos = [...new Set([...camadas.map(c => c.codigo_cigam), ...opcoes.map(o => o.codigo_cigam)].filter(Boolean))];
     if (codigos.length) {
       const { data, error } = await est().from("materiais").select("codigo_cigam,nome_labeltag").in("codigo_cigam", codigos);
       if (error) throw error;
       nomesMat = Object.fromEntries((data || []).map(m => [m.codigo_cigam, m.nome_labeltag]));
     }
-    if (!receitas.length) { $("selReceita").innerHTML = "<option>Nenhuma receita cadastrada</option>"; return; }
+    if (!receitas.length) { $("selReceita").innerHTML = "<option>Nenhuma técnica cadastrada</option>"; return; }
     $("selReceita").innerHTML = receitas.map(x => `<option value="${x.id}">${esc(x.nome)}</option>`).join("");
-    const salvo = Number(lsGet("receita"));
-    recAtual = receitas.find(x => x.id === salvo) || receitas[0];
-    $("selReceita").value = recAtual.id;
-    render();
-  } catch (e) { msg("recEditMsg", "erro", erroTxt(e)); }
+    const alvo = manterId || Number(lsGet("receita"));
+    rec = receitas.find(x => x.id === alvo) || receitas[0];
+    $("selReceita").value = rec.id;
+    trocarReceita();
+  } catch (e) { msg("avisoTec", "erro", erroTxt(e)); }
 }
-$("selReceita").onchange = () => { recAtual = receitas.find(x => x.id === Number($("selReceita").value)); lsSet("receita", recAtual.id); render(); };
+$("selReceita").onchange = () => { rec = receitas.find(x => x.id === Number($("selReceita").value)); lsSet("receita", rec.id); trocarReceita(); };
 
 // ===== REGRAS =====
-const camadasDa = rid => camadas.filter(c => c.receita_id === rid).sort((a, b) => a.ordem - b.ordem);
+const camadasDa = rid => camadas.filter(c => c.receita_id === rid);
 const regrasDa = cid => regras.filter(r => r.camada_id === cid);
 const opcoesDa = cid => opcoes.filter(o => o.camada_id === cid);
+const gruposDa = rid => grupos.filter(g => g.receita_id === rid)
+  .sort((a, b) => (gruposCusto[a.grupo_custo_id]?.nome || "").localeCompare(gruposCusto[b.grupo_custo_id]?.nome || ""));
+const grupoAtual = () => grupos.find(g => g.receita_id === rec?.id && g.grupo_custo_id === prod.grupo);
+const nomeGrupo = id => (gruposCusto[id]?.nome || "?").replace(/^.*·\s*/, "");
+const fator = () => 1 + Number(rec.perda_processo_pct) / 100;
+
+function casa(r, a) {
+  const ok = (v, x) => v === "qualquer" || v === (x ? "sim" : "nao");
+  return (r.corte === "qualquer" || r.corte === a.corte) && ok(r.impressao, a.impressao) && ok(r.textura, a.textura) && ok(r.silk, a.silk);
+}
 function regraTexto(r) {
-  const p = [];
-  p.push(r.corte === "qualquer" ? "qualquer corte" : r.corte === "verso" ? "corte pelo verso" : "corte por cima");
+  const p = [r.corte === "qualquer" ? "qualquer corte" : r.corte === "verso" ? "corte pelo verso" : "corte por cima"];
   if (r.impressao !== "qualquer") p.push(r.impressao === "sim" ? "com impressão" : "sem impressão");
   if (r.textura !== "qualquer") p.push(r.textura === "sim" ? "com textura" : "sem textura");
   if (r.silk !== "qualquer") p.push(r.silk === "sim" ? "com silk" : "sem silk");
   return p.join(", ");
 }
-function casa(r, a) {
-  const ok = (v, x) => v === "qualquer" || v === (x ? "sim" : "nao");
-  return (r.corte === "qualquer" || r.corte === a.corte) && ok(r.impressao, a.impressao) && ok(r.textura, a.textura) && ok(r.silk, a.silk);
-}
-function materialDe(c, textura) {
-  if (c.origem === "vaga") return null;
-  if (c.origem === "grupo") return { codigo: null, nome: gruposCusto[c.grupo_custo_id]?.nome || "?" };
-  if (c.origem === "material") return { codigo: c.codigo_cigam, nome: nomesMat[c.codigo_cigam] || "código não encontrado" };
+function materialDe(c) {
+  if (c.origem === "vaga") return { nome: gruposCusto[prod.grupo]?.nome || "escolhido no produto", codigo: null };
+  if (c.origem === "grupo") return { nome: gruposCusto[c.grupo_custo_id]?.nome || "?", codigo: null };
+  if (c.origem === "material") return { nome: nomesMat[c.codigo_cigam] || "código não encontrado", codigo: c.codigo_cigam };
   const ops = opcoesDa(c.id);
-  const o = (textura && ops.find(x => x.selecionar_se === "textura")) || ops.find(x => x.padrao) || ops[0];
-  return o ? { codigo: o.codigo_cigam, nome: nomesMat[o.codigo_cigam] || "código não encontrado" } : { codigo: null, nome: "sem opção cadastrada" };
+  const o = (prod.textura && ops.find(x => x.selecionar_se === "textura")) || ops.find(x => x.padrao) || ops[0];
+  return o ? { nome: nomesMat[o.codigo_cigam] || "código não encontrado", codigo: o.codigo_cigam } : { nome: "sem opção", codigo: null };
+}
+// ordem física: frente (topo) → base → cola → verso (fundo)
+function pesoFisico(c) {
+  const lado = c.lado === "frente" ? 0 : c.lado === "verso" ? 2 : 1;
+  const papel = { mascara: c.lado === "verso" ? 2 : 0, tinta: 0, base: 1, cola: 1, outro: 1 }[c.papel] ?? 1;
+  return lado * 10 + papel;
+}
+const camadasAtivas = () => camadasDa(rec.id).filter(c => regrasDa(c.id).some(r => casa(r, prod)));
+
+// ===== ABA TÉCNICA =====
+function trocarReceita() {
+  desmarcadas.clear();
+  const gs = gruposDa(rec.id);
+  $("selGrupo").innerHTML = gs.map(g => `<option value="${g.grupo_custo_id}">${esc(nomeGrupo(g.grupo_custo_id))}</option>`).join("")
+    || `<option value="">— sem famílias —</option>`;
+  const salvo = Number(lsGet("grupo"));
+  prod.grupo = gs.some(g => g.grupo_custo_id === salvo) ? salvo : gs[0]?.grupo_custo_id ?? null;
+  if (prod.grupo != null) $("selGrupo").value = prod.grupo;
+  aplicarGrupo();
+  renderConfig();
+}
+$("selGrupo").onchange = () => { prod.grupo = Number($("selGrupo").value); lsSet("grupo", prod.grupo); aplicarGrupo(); };
+function aplicarGrupo() {
+  const g = grupoAtual();
+  if (g && g.textura_de_fabrica) prod.textura = true;
+  if (g && prod.corte === "verso" && !g.permite_corte_verso) prod.corte = "frente";
+  if (g && prod.corte === "frente" && !g.permite_corte_frente) prod.corte = "verso";
+  renderTecnica();
+}
+document.querySelectorAll("[data-corte]").forEach(b => b.onclick = () => {
+  const g = grupoAtual();
+  if (g && ((b.dataset.corte === "verso" && !g.permite_corte_verso) || (b.dataset.corte === "frente" && !g.permite_corte_frente))) return;
+  prod.corte = b.dataset.corte; renderTecnica();
+});
+document.querySelectorAll("[data-attr]").forEach(b => b.onclick = () => {
+  const k = b.dataset.attr;
+  if (k === "textura" && grupoAtual()?.textura_de_fabrica) return;
+  prod[k] = !prod[k]; renderTecnica();
+});
+
+function renderTecnica() {
+  if (!rec) return;
+  const g = grupoAtual();
+  document.querySelectorAll("[data-corte]").forEach(b => {
+    const bloqueado = g && ((b.dataset.corte === "verso" && !g.permite_corte_verso) || (b.dataset.corte === "frente" && !g.permite_corte_frente));
+    b.setAttribute("aria-pressed", b.dataset.corte === prod.corte ? "true" : "false");
+    b.disabled = !!bloqueado;
+    b.title = bloqueado ? `${nomeGrupo(prod.grupo)} não aceita este corte` : "";
+  });
+  document.querySelectorAll("[data-attr]").forEach(b => {
+    b.setAttribute("aria-pressed", prod[b.dataset.attr] ? "true" : "false");
+    const trav = b.dataset.attr === "textura" && g?.textura_de_fabrica;
+    b.classList.toggle("travado", !!trav);
+    b.textContent = trav ? "Textura de fábrica" : { impressao: "Impressão", textura: "Textura", silk: "Silk" }[b.dataset.attr];
+  });
+  const restr = g && !g.permite_corte_verso ? `${esc(nomeGrupo(prod.grupo))}: só corte por cima.` : "";
+  msg("avisoTec", "aviso", restr);
+
+  const todas = camadasDa(rec.id);
+  if (!todas.length) {
+    $("pilha").innerHTML = `<div class="camada outro" style="justify-content:center">Sem camadas cadastradas</div>`;
+    $("laserCima").textContent = $("laserBaixo").textContent = $("naoEntram").textContent = "";
+  } else {
+    const ativas = camadasAtivas().sort((a, b) => pesoFisico(a) - pesoFisico(b));
+    $("pilha").innerHTML = ativas.map(c => {
+      const m = materialDe(c);
+      return `<div class="camada ${esc(c.papel)}"><div><div class="nome">${esc(c.nome.replace(/\s*\(.*\)\s*$/, ""))}</div>
+        <div class="mat">${esc(m.nome)}${m.codigo ? " · " + esc(m.codigo) : ""}</div></div>
+        ${c.lado ? `<div class="lado">${LADO[c.lado]}</div>` : ""}</div>`;
+    }).join("");
+    $("laserCima").textContent = prod.corte === "frente" ? "▼ laser por cima" : "";
+    $("laserBaixo").textContent = prod.corte === "verso" ? "▲ laser pelo verso (meio corte)" : "";
+    const fora = todas.filter(c => !ativas.includes(c)).map(c => c.nome.replace(/\s*\(.*\)\s*$/, ""));
+    $("naoEntram").textContent = fora.length ? "Não entram neste produto: " + fora.join(" · ") : "";
+  }
+
+  const es = etapas.filter(e => e.receita_id === rec.id);
+  const ativa = e => e.condicao === "sempre" || (e.condicao === "impressao" && prod.impressao) || (e.condicao === "silk" && prod.silk);
+  $("fluxo").innerHTML = es.map((e, i) => `${i ? '<span class="seta">→</span>' : ""}<span class="etapa ${ativa(e) ? "ativa" : "inativa"}" title="${esc(e.observacao || "")}">${esc(e.setor)}</span>`).join("")
+    || `<span class="sub">Roteiro não cadastrado.</span>`;
+  $("metaReceita").textContent = `Receita v${rec.versao} · perda de processo ${fmt(rec.perda_processo_pct, 2)}% · alterada em ${fmtData(rec.atualizado_em)}`;
+  renderConsumo();
 }
 
-// ===== RENDER RECEITA =====
-function render() {
-  if (!recAtual) return;
-  const fator = 1 + Number(recAtual.perda_processo_pct) / 100;
-  $("recTitulo").textContent = "Receita · " + recAtual.nome;
-  $("recPerda").innerHTML = perfil.admin
-    ? `<input class="edit" id="edPerda" value="${fmt(recAtual.perda_processo_pct, 2)}"> %`
-    : fmt(recAtual.perda_processo_pct, 2) + " %";
-  $("recVersao").textContent = recAtual.versao;
-  $("recAtual").textContent = recAtual.atualizado_em
-    ? new Date(recAtual.atualizado_em).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" })
-    : "–";
-  $("recObs").textContent = recAtual.observacao || "";
+// ===== ABA CALCULAR CONSUMO =====
+["sQtd", "sLarg", "sAlt", "sAprov"].forEach(id => $(id).addEventListener("input", renderConsumo));
+$("tbCons").addEventListener("change", ev => {
+  const id = Number(ev.target.dataset.usa); if (!id) return;
+  ev.target.checked ? desmarcadas.delete(id) : desmarcadas.add(id);
+  renderConsumo();
+});
+function renderConsumo() {
+  if (!rec) return;
+  const attrs = [prod.corte === "verso" ? "corte pelo verso" : "corte por cima"];
+  if (prod.impressao) attrs.push("impressão"); if (prod.textura) attrs.push("textura"); if (prod.silk) attrs.push("silk");
+  $("resumoProduto").innerHTML = `<b>${esc(rec.nome)}</b> · ${esc(nomeGrupo(prod.grupo))} · ${attrs.join(" · ")} — <a href="#" id="lnkAlterar">alterar</a>`;
+  $("lnkAlterar").onclick = ev => { ev.preventDefault(); irAba("tecnica"); };
+  msg("consMsg", "", "");
+  const qtd = num($("sQtd").value), L = num($("sLarg").value), H = num($("sAlt").value), ap = num($("sAprov").value);
+  const area = qtd > 0 && L > 0 && H > 0 ? qtd * L * H / 1e6 : NaN;
+  const ok = ap > 0 && ap <= 100;
+  if (!ok) msg("consMsg", "aviso", "Aproveitamento deve ficar entre 1 e 100%.");
+  const bruta = area > 0 && ok ? area / (ap / 100) : NaN;
+  $("rArea").textContent = isNaN(area) ? "–" : fmt(area, 3) + " m²";
+  $("rAreaBruta").textContent = isNaN(bruta) ? "–" : fmt(bruta, 3) + " m²";
+  const f = fator();
+  const ativas = camadasAtivas().sort((a, b) => pesoFisico(a) - pesoFisico(b));
+  $("tbCons").innerHTML = ativas.map(c => {
+    const usa = !desmarcadas.has(c.id), m = materialDe(c);
+    return `<tr class="${usa ? "" : "fora"}"><td><input type="checkbox" data-usa="${c.id}" ${usa ? "checked" : ""} aria-label="Usar ${esc(c.nome)}"></td>
+      <td>${esc(c.nome.replace(/\s*\(.*\)\s*$/, ""))}</td>
+      <td>${esc(m.nome)}${m.codigo ? ` <span class="sub num">${esc(m.codigo)}</span>` : ""}</td>
+      <td class="num"><b>${isNaN(bruta) || !usa ? "–" : fmt(bruta * c.consumo_m2 * f, 3) + " m²"}</b></td></tr>`;
+  }).join("") || `<tr><td colspan="4" class="sub">Nenhuma camada.</td></tr>`;
+}
 
-  const cs = camadasDa(recAtual.id);
-  $("tbCamadas").innerHTML = cs.map(c => {
-    const m = materialDe(c, false);
-    const mat = c.origem === "vaga" ? `<span class="tag info">escolhido no produto</span>`
-      : `${esc(m.nome)}${m.codigo ? ` <span class="sub mono">${esc(m.codigo)}</span>` : ""}${c.origem === "opcao" ? ` <span class="tag atencao">${opcoesDa(c.id).length} opções</span>` : ""}`;
-    const quando = regrasDa(c.id).map(regraTexto).join(" <b>ou</b> ") || `<span class="tag critico">sem regra</span>`;
-    const geo = perfil.admin ? `<input class="edit" data-cam="${c.id}" value="${fmt(c.consumo_m2, 4)}">` : fmt(c.consumo_m2, 4);
-    return `<tr><td class="num">${c.ordem}</td><td>${esc(c.nome)}${c.base_calculo ? `<div class="sub">${esc(c.base_calculo)}</div>` : ""}</td>
-      <td>${c.lado ? LADO[c.lado] : "–"}</td><td>${mat}</td><td>${quando}</td>
-      <td class="num">${geo}</td><td class="num"><b>${fmt(c.consumo_m2 * fator, 4)}</b></td></tr>`;
-  }).join("");
+// ===== ABA CONFIGURAR (admin) =====
+function renderConfig() {
+  if (!rec || !perfil?.admin) return;
+  $("cfgTitulo").textContent = "Receita · " + rec.nome;
+  $("cfgPerda").value = fmt(rec.perda_processo_pct, 2);
+  $("cfgVersao").textContent = "v" + rec.versao;
+  $("cfgAlterada").textContent = fmtData(rec.atualizado_em);
+  $("cfgObs").value = rec.observacao || "";
+  const f = fator();
+  const cs = camadasDa(rec.id).sort((a, b) => pesoFisico(a) - pesoFisico(b));
+  $("tbCfgCamadas").innerHTML = cs.map(c => `<tr>
+    <td><b>${esc(c.nome)}</b>${c.lado ? ` <span class="tag">${LADO[c.lado]}</span>` : ""}${c.base_calculo ? `<div class="sub">${esc(c.base_calculo)}</div>` : ""}</td>
+    <td class="sub">${regrasDa(c.id).map(regraTexto).join("<br><b>ou</b> ") || "sem regra"}</td>
+    <td class="num"><input class="edit" data-cam="${c.id}" value="${fmt(c.consumo_m2, 4)}" aria-label="Consumo geométrico ${esc(c.nome)}"></td>
+    <td class="num"><b>${fmt(c.consumo_m2 * f, 4)}</b></td></tr>`).join("")
+    || `<tr><td colspan="4" class="sub">Sem camadas. O cadastro de camadas vem na próxima etapa.</td></tr>`;
 
   const comOp = cs.filter(c => c.origem === "opcao");
-  $("opcoesBox").innerHTML = comOp.map(c => `<h3>Opções · ${esc(c.nome)}</h3>
-    <p class="sub" style="margin:0 0 6px">Orçamento: ${c.regra_custo === "mais_cara" ? "usa a opção <b>mais cara</b>" : "usa a opção padrão"}. Baixa: a opção escolhida no produto.</p>
+  $("cardOpcoes").classList.toggle("oculto", !comOp.length);
+  $("cardOpcoes").innerHTML = comOp.map(c => `<h2>Opções · ${esc(c.nome.replace(/\s*\(.*\)\s*$/, ""))}</h2>
+    <p class="sub" style="margin-top:-6px">Orçamento usa ${c.regra_custo === "mais_cara" ? "a opção <b>mais cara</b>" : "a opção padrão"}; a baixa usa a opção do produto.</p>
     <div class="rolagem"><table><thead><tr><th>Material</th><th>Quando</th><th>Critério</th></tr></thead><tbody>
-    ${opcoesDa(c.id).map(o => `<tr><td>${esc(nomesMat[o.codigo_cigam] || "código não encontrado")} <span class="sub mono">${esc(o.codigo_cigam)}</span></td>
+    ${opcoesDa(c.id).map(o => `<tr><td>${esc(nomesMat[o.codigo_cigam] || "código não encontrado")} <span class="sub num">${esc(o.codigo_cigam)}</span></td>
       <td>${o.selecionar_se === "textura" ? `<span class="tag info">com textura</span>` : o.padrao ? `<span class="tag ok">padrão</span>` : "–"}</td>
-      <td class="sub">${esc(o.criterio || "")}</td></tr>`).join("")}
-    </tbody></table></div>`).join("");
+      <td class="sub">${esc(o.criterio || "")}</td></tr>`).join("")}</tbody></table></div>`).join("");
 
-  const gs = grupos.filter(g => g.receita_id === recAtual.id)
-    .sort((a, b) => (gruposCusto[a.grupo_custo_id]?.nome || "").localeCompare(gruposCusto[b.grupo_custo_id]?.nome || ""));
-  const ck = (g, campo) => perfil.admin
-    ? `<input type="checkbox" data-grp="${g.grupo_custo_id}" data-campo="${campo}" ${g[campo] ? "checked" : ""} aria-label="${campo}">`
-    : (g[campo] ? `<span class="tag ok">sim</span>` : `<span class="tag">não</span>`);
-  $("tbGrupos").innerHTML = gs.map(g => `<tr><td>${esc(gruposCusto[g.grupo_custo_id]?.nome || "?")}</td>
-    <td>${ck(g, "permite_corte_verso")}</td><td>${ck(g, "permite_corte_frente")}</td><td>${"textura_de_fabrica" in g ? ck(g, "textura_de_fabrica") : `<span class="sub">rode o SQL 04</span>`}</td></tr>`).join("")
-    || `<tr><td colspan="4" class="sub">Nenhum grupo vinculado.</td></tr>`;
-
-  const es = etapas.filter(e => e.receita_id === recAtual.id);
-  $("lstEtapas").innerHTML = es.map(e => `<li><b>${esc(e.setor)}</b> <span class="tag ${e.condicao === "sempre" ? "" : "info"}">${COND[e.condicao] || e.condicao}</span>${e.observacao ? `<div class="sub">${esc(e.observacao)}</div>` : ""}</li>`).join("");
-
-  const gSel = $("sGrupo").value;
-  $("sGrupo").innerHTML = gs.map(g => `<option value="${g.grupo_custo_id}">${esc(gruposCusto[g.grupo_custo_id]?.nome || "?")}</option>`).join("");
-  if (gSel && gs.some(g => String(g.grupo_custo_id) === gSel)) $("sGrupo").value = gSel;
-  else { const g0 = gs[0]; $("sTex").checked = !!(g0 && g0.textura_de_fabrica); }
-  simular();
+  const ck = (g, campo) => `<input type="checkbox" data-grp="${g.grupo_custo_id}" data-campo="${campo}" ${g[campo] ? "checked" : ""} aria-label="${campo}">`;
+  $("tbCfgGrupos").innerHTML = gruposDa(rec.id).map(g => `<tr><td>${esc(nomeGrupo(g.grupo_custo_id))}</td>
+    <td>${ck(g, "permite_corte_verso")}</td><td>${ck(g, "permite_corte_frente")}</td><td>${ck(g, "textura_de_fabrica")}</td></tr>`).join("")
+    || `<tr><td colspan="4" class="sub">Nenhuma família vinculada.</td></tr>`;
 }
 
-// ===== SALVAR (admin) =====
 async function marcarAlteracao(extra) {
   const agora = new Date().toISOString();
-  const { error } = await sb.from("receita").update({ ...extra, atualizado_em: agora }).eq("id", recAtual.id);
+  const { error } = await sb.from("receita").update({ ...extra, atualizado_em: agora }).eq("id", rec.id);
   if (error) throw error;
-  Object.assign(recAtual, extra, { atualizado_em: agora });
+  Object.assign(rec, extra, { atualizado_em: agora });
 }
-$("btnSalvarCamadas").onclick = async () => {
-  const btn = $("btnSalvarCamadas"); btn.disabled = true; msg("camMsg", "", "");
+$("btnSalvarReceita").onclick = async () => {
+  const btn = $("btnSalvarReceita"); btn.disabled = true; msg("cfgMsg", "", "");
   try {
-    const perda = num($("edPerda")?.value);
+    const perda = num($("cfgPerda").value);
     if (!(perda >= 0 && perda < 100)) throw new Error("Perda de processo inválida (0 a 99,99%).");
+    const obs = $("cfgObs").value.trim() || null;
     const alter = [];
     document.querySelectorAll("input[data-cam]").forEach(inp => {
       const c = camadas.find(x => x.id === Number(inp.dataset.cam)), v = num(inp.value);
-      if (!(v > 0)) throw new Error(`Consumo inválido na camada "${c.nome}".`);
+      if (!(v > 0)) throw new Error(`Consumo inválido em "${c.nome}".`);
       if (Math.abs(v - Number(c.consumo_m2)) > 1e-6) alter.push({ id: c.id, v });
     });
-    const mudouPerda = Math.abs(perda - Number(recAtual.perda_processo_pct)) > 1e-6;
-    if (!mudouPerda && !alter.length) { msg("camMsg", "aviso", "Nada foi alterado."); return; }
+    const extra = {};
+    if (Math.abs(perda - Number(rec.perda_processo_pct)) > 1e-6) extra.perda_processo_pct = perda;
+    if (obs !== (rec.observacao || null)) extra.observacao = obs;
+    if (!alter.length && !Object.keys(extra).length) { msg("cfgMsg", "aviso", "Nada foi alterado."); return; }
     for (const a of alter) {
       const { error } = await sb.from("receita_camada").update({ consumo_m2: a.v }).eq("id", a.id);
       if (error) throw error;
       camadas.find(x => x.id === a.id).consumo_m2 = a.v;
     }
-    await marcarAlteracao(mudouPerda ? { perda_processo_pct: perda } : {});
-    msg("camMsg", "ok", "Salvo.");
-    render();
-  } catch (e) { msg("camMsg", "erro", erroTxt(e)); }
+    await marcarAlteracao(extra);
+    renderConfig(); renderTecnica();
+    msg("cfgMsg", "ok", "Receita salva.");
+  } catch (e) { msg("cfgMsg", "erro", erroTxt(e)); }
   finally { btn.disabled = false; }
 };
 $("btnSalvarGrupos").onclick = async () => {
   const btn = $("btnSalvarGrupos"); btn.disabled = true; msg("grpMsg", "", "");
   try {
-    const porGrupo = {};
-    document.querySelectorAll("input[data-grp]").forEach(i => { (porGrupo[i.dataset.grp] ||= {})[i.dataset.campo] = i.checked; });
-    for (const [gid, campos] of Object.entries(porGrupo)) {
-      if (campos.permite_corte_verso === false && campos.permite_corte_frente === false)
-        throw new Error(`${gruposCusto[gid]?.nome}: precisa permitir pelo menos um tipo de corte.`);
-      const { error } = await sb.from("receita_grupo_permitido").update(campos).eq("receita_id", recAtual.id).eq("grupo_custo_id", Number(gid));
+    const por = {};
+    document.querySelectorAll("input[data-grp]").forEach(i => { (por[i.dataset.grp] ||= {})[i.dataset.campo] = i.checked; });
+    const mud = Object.entries(por).filter(([gid, c]) => {
+      const g = grupos.find(x => x.receita_id === rec.id && x.grupo_custo_id === Number(gid));
+      return Object.keys(c).some(k => !!g[k] !== c[k]);
+    });
+    if (!mud.length) { msg("grpMsg", "aviso", "Nada foi alterado."); return; }
+    for (const [gid, c] of mud) {
+      if (!c.permite_corte_verso && !c.permite_corte_frente) throw new Error(`${nomeGrupo(Number(gid))}: precisa permitir pelo menos um tipo de corte.`);
+      const { error } = await sb.from("receita_grupo_permitido").update(c).eq("receita_id", rec.id).eq("grupo_custo_id", Number(gid));
       if (error) throw error;
-      Object.assign(grupos.find(g => g.receita_id === recAtual.id && g.grupo_custo_id === Number(gid)), campos);
+      Object.assign(grupos.find(x => x.receita_id === rec.id && x.grupo_custo_id === Number(gid)), c);
     }
     await marcarAlteracao({});
-    msg("grpMsg", "ok", "Salvo.");
-    render();
+    renderConfig(); aplicarGrupo();
+    msg("grpMsg", "ok", "Famílias salvas.");
   } catch (e) { msg("grpMsg", "erro", erroTxt(e)); }
   finally { btn.disabled = false; }
 };
-
-// ===== SIMULADOR =====
-let corte = "verso", desmarcadas = new Set();
-document.querySelectorAll("#sCorte button").forEach(b => b.onclick = () => {
-  corte = b.dataset.v;
-  document.querySelectorAll("#sCorte button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
-  simular();
-});
-["sGrupo", "sImp", "sTex", "sSilk", "sQtd", "sLarg", "sAlt", "sAprov"].forEach(id => $(id).addEventListener("input", simular));
-$("sGrupo").addEventListener("change", () => {
-  const g = grupos.find(x => x.receita_id === recAtual?.id && x.grupo_custo_id === Number($("sGrupo").value));
-  if (g && "textura_de_fabrica" in g) $("sTex").checked = !!g.textura_de_fabrica;
-  simular();
-});
-$("tbSim").addEventListener("change", ev => {
-  const id = Number(ev.target.dataset.usa); if (!id) return;
-  ev.target.checked ? desmarcadas.delete(id) : desmarcadas.add(id);
-  simular();
-});
-
-function simular() {
-  if (!recAtual) return;
-  msg("simMsg", "", "");
-  const g = grupos.find(x => x.receita_id === recAtual.id && x.grupo_custo_id === Number($("sGrupo").value));
-  const a = { corte, impressao: $("sImp").checked, textura: $("sTex").checked, silk: $("sSilk").checked };
-  const avisos = [];
-  if (g && corte === "verso" && !g.permite_corte_verso) avisos.push(`${esc(gruposCusto[g.grupo_custo_id]?.nome)} não aceita meio corte pelo verso (letra solta).`);
-  if (g && corte === "frente" && !g.permite_corte_frente) avisos.push(`${esc(gruposCusto[g.grupo_custo_id]?.nome)} não aceita corte por cima.`);
-  if (avisos.length) msg("simMsg", "erro", avisos.join("<br>"));
-
-  const qtd = num($("sQtd").value), L = num($("sLarg").value), H = num($("sAlt").value), ap = num($("sAprov").value);
-  const areaPecas = qtd > 0 && L > 0 && H > 0 ? qtd * L * H / 1e6 : NaN;
-  const areaBruta = areaPecas > 0 && ap > 0 && ap <= 100 ? areaPecas / (ap / 100) : NaN;
-  if (!(ap > 0 && ap <= 100)) msg("simMsg", "aviso", "Aproveitamento deve ficar entre 1 e 100%.");
-  $("rArea").textContent = isNaN(areaPecas) ? "–" : fmt(areaPecas, 3) + " m²";
-  $("rAreaBruta").textContent = isNaN(areaBruta) ? "–" : fmt(areaBruta, 3) + " m²";
-
-  const fator = 1 + Number(recAtual.perda_processo_pct) / 100;
-  const linhas = camadasDa(recAtual.id).map(c => {
-    const entra = regrasDa(c.id).some(r => casa(r, a));
-    if (!entra) return "";
-    const usa = !desmarcadas.has(c.id);
-    const m = c.origem === "vaga"
-      ? { nome: gruposCusto[Number($("sGrupo").value)]?.nome || "?", codigo: null, cor: true }
-      : materialDe(c, a.textura);
-    const k = c.consumo_m2 * fator;
-    return `<tr class="${usa ? "" : "fora"}"><td><input type="checkbox" data-usa="${c.id}" ${usa ? "checked" : ""} aria-label="Usar ${esc(c.nome)}"></td>
-      <td>${esc(c.nome)}${c.lado ? ` <span class="sub">${LADO[c.lado]}</span>` : ""}</td>
-      <td>${esc(m.nome)}${m.codigo ? ` <span class="sub mono">${esc(m.codigo)}</span>` : ""}${m.cor ? ` <span class="sub">(cor definida no produto)</span>` : ""}</td>
-      <td class="num">${fmt(k, 4)}</td><td class="num"><b>${isNaN(areaBruta) || !usa ? "–" : fmt(areaBruta * k, 3)}</b></td></tr>`;
-  }).join("");
-  $("tbSim").innerHTML = linhas || `<tr><td colspan="5" class="sub">Nenhuma camada se aplica.</td></tr>`;
-  $("simNota").textContent = "Consumo = área consumida × m²/m² final (já com a perda de processo). Desmarque uma camada para tirá-la deste produto.";
-  const es = etapas.filter(e => e.receita_id === recAtual.id && (e.condicao === "sempre" || (e.condicao === "impressao" && a.impressao) || (e.condicao === "silk" && a.silk)));
-  $("simEtapas").innerHTML = es.map((e, i) => `<span class="tag ok">${i + 1}. ${esc(e.setor)}</span>`).join("");
-}
+$("btnNova").onclick = async () => {
+  const btn = $("btnNova"); btn.disabled = true; msg("novaMsg", "", "");
+  try {
+    const nome = $("novaNome").value.trim(), perda = num($("novaPerda").value);
+    if (!nome) throw new Error("Informe o nome da técnica.");
+    if (!(perda >= 0 && perda < 100)) throw new Error("Perda de processo inválida (0 a 99,99%).");
+    const { data, error } = await sb.from("receita").insert({ tecnica: nome, nome, perda_processo_pct: perda }).select().single();
+    if (error) throw error;
+    $("novaNome").value = "";
+    lsSet("receita", data.id);
+    await carregar(data.id);
+    msg("novaMsg", "ok", `Técnica <b>${esc(nome)}</b> criada. Agora faltam as camadas e o roteiro.`);
+  } catch (e) { msg("novaMsg", "erro", erroTxt(e)); }
+  finally { btn.disabled = false; }
+};
 
 // ===== ABAS =====
-document.querySelectorAll(".abas button").forEach(b => b.onclick = () => {
-  document.querySelectorAll(".abas button").forEach(x => x.setAttribute("aria-selected", x === b ? "true" : "false"));
-  $("abaReceita").classList.toggle("oculto", b.dataset.aba !== "receita");
-  $("abaSimular").classList.toggle("oculto", b.dataset.aba !== "simular");
-  if (b.dataset.aba === "simular") simular();
-});
+function irAba(nome) {
+  document.querySelectorAll(".abas button").forEach(x => x.setAttribute("aria-selected", x.dataset.aba === nome ? "true" : "false"));
+  $("abaTecnica").classList.toggle("oculto", nome !== "tecnica");
+  $("abaConsumo").classList.toggle("oculto", nome !== "consumo");
+  $("abaConfig").classList.toggle("oculto", nome !== "config");
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll(".abas button").forEach(b => b.onclick = () => irAba(b.dataset.aba));
 </script>
 </body>
 </html>
